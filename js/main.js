@@ -1,12 +1,5 @@
 'use strict';
 
-var delta;
-
-var fps = 0;
-var fpsUpdateInterval = 1000;
-var fpsTimer;
-var frames = 0;
-
 window.requestAnimFrame = (function(){
     return  window.requestAnimationFrame || 
     window.webkitRequestAnimationFrame   || 
@@ -25,11 +18,21 @@ window.requestAnimFrame = (function(){
 var lastRun;
 (function(window, document) {
 
-    var canvas   = document.getElementById('canvas'),
-        width        = canvas.width,
-        height       = canvas.height,
-        game_running = true,
-        show_fps     = true;
+    /**
+     * Variables
+     */
+    var delta;
+    
+    var fps = 0;
+    var fpsUpdateInterval = 1000;
+    var fpsTimer;
+    var frames = 0;
+
+    var canvas       = document.getElementById('canvas');
+    var width        = canvas.width;
+    var height       = canvas.height;
+    var game_running = true;
+    var show_fps     = true;
 
     /**
      * Determine if the canvas is supported, get the context and warn the user 
@@ -58,7 +61,6 @@ var lastRun;
     function FPS(delta) {
 
         fpsTimer += delta;
-        console.log(fpsTimer + " " + delta);
         frames++;
         if(fpsTimer > fpsUpdateInterval) {
             fps = frames / fpsTimer;
