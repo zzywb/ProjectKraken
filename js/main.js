@@ -54,9 +54,9 @@ window.requestAnimFrame = (function () {
 
 	function showFPS() {
 
-		context.fillStyle = 'Black';
+		context.fillStyle = 'white';
 		context.font = 'normal 16pt Arial';
-		context.fillText('FPS: ' + fps.toFixed(2), 10, 26);
+		context.fillText('FPS: ' + fps.toFixed(2), 10, 30);
 
 	}
 
@@ -72,6 +72,10 @@ window.requestAnimFrame = (function () {
 		}
 
 	}
+	
+
+	// Creating a rectangle
+	var rect = rectangle(width/2 - 50, height/2 - 50, 100, 100, 'blue');
 
 	(function gameLoop() {
 
@@ -83,15 +87,25 @@ window.requestAnimFrame = (function () {
 		// Clear screen
 		context.clearRect(0, 0, width, height);
 
-		if (show_fps) showFPS();
 
+
+
+
+
+		// Draw a rectangle
+		rect.draw(context);
+
+
+
+		
+		
 		if (game_running) requestAnimFrame(gameLoop);
 
-		context.fillStyle = 'green';
-		context.fillRect(10, 10, 50, 50);
-
+		// Draw the fps
+		if (show_fps) showFPS();
+		
 		lastRun = performance.now();
-
+		
 	})();
 
 })(this, this.document);
