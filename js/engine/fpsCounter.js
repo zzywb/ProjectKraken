@@ -3,7 +3,7 @@
  * 
  * @since v1.0.0
  */
-var fpsCounter = new(function () {
+var FPSCounter = new(function () {
 
   this.draw = function (context) {
     context.fillStyle = 'white';

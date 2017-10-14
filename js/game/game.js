@@ -22,27 +22,31 @@ var circ = new Circle({
   strokeColor: 'green',
 });
 
-
+var speed = 5;
 var sum = 0;
 
 (function (window, document) {
 
   function update(delta) {
 
-    fpsCounter.update(delta);
+    FPSCounter.update(delta);
 
     if (Input.getKeyDown('up')) {
-      circ.position.y -= 5;
+      circ.position.y -= speed;
     }
     if (Input.getKeyDown('down')) {
-      circ.position.y += 5;
+      circ.position.y += speed;
     }
     if (Input.getKeyDown('left')) {
-      circ.position.x -= 5;
+      circ.position.x -= speed;
     }
     if (Input.getKeyDown('right')) {
-      circ.position.x += 5;
+      circ.position.x += speed;
     }
+
+    // var mag = Math.hypot(circ.position.x, circ.position.y);
+    // x /= mag;
+    // y /= mag;
 
     circ.strokeWidth = 2 + Math.abs(10 * Math.sin(sum += delta / 1000));
 
@@ -57,7 +61,7 @@ var sum = 0;
     circ.draw(context);
 
     // Show FPS
-    fpsCounter.draw(context);
+    FPSCounter.draw(context);
 
   }
 
