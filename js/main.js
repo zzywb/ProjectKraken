@@ -88,8 +88,8 @@ window.requestAnimFrame = (function () {
 
 	var circ = new Circle({
 		position: {
-			x: 0,
-			y: 0
+			x: width/2 - 15,
+			y: height/2 -15
 		},
 		radius: 30,
 		fillColor: 'red',
@@ -101,27 +101,24 @@ window.requestAnimFrame = (function () {
 
 		// Compute the time it took to render the last frame
 		delta = (performance.now() - lastRun);
-
-		FPS(delta);
-
-		// Clear screen
 		context.clearRect(0, 0, width, height);
 
-
-
-
-
+		FPS(delta);
+		
 
 		// Draw a rectangle
 		rect.draw(context);
-
-		console.log(Input.getKeyDown('fire1'));
-    
-		// Draw a circle
+		
+		
+		// Draw a circle if fire1 pressed
+		if(Input.getKeyDown('fire1')) {
+			circ.position.y += 10;
+		}
 		circ.draw(context);
 
-
 		
+
+		// Clear screen
 		
 		if (game_running) requestAnimFrame(gameLoop);
 

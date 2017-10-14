@@ -4,18 +4,20 @@ var keyMap = {
 
 var currentKeyDown = null;
 
+document.addEventListener('keydown', function(e) {
+	currentKeyDown = e.key;
+}, true);
+
+document.addEventListener('keyup', function(e) {
+	if(currentKeyDown == e.key)
+		currentKeyDown = null;
+}, true);
+
 var Input = new (function(keyMap) {
 
 	this.getKeyDown = function(key) {
-		
-		document.addEventListener('keydown', function(e) {
-			currentKeyDown = e.key;
-		}, true);
-		
-		var temp = currentKeyDown;
-		currentKeyDown = null;
 
-		if(keyMap[key] == temp)
+		if(keyMap[key] == currentKeyDown)
 			return true;
 		
 		return false;
