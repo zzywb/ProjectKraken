@@ -22,7 +22,7 @@ window.requestAnimFrame = (function () {
 (function (window, document) {
 
 	/**
-	 * Variables
+	 * Configuration
 	 *
 	 * @since 1.0.0
 	 */
@@ -115,9 +115,10 @@ window.requestAnimFrame = (function () {
 		// Draw a rectangle
 		rect.draw(context);
 
+		console.log(Input.getKeyDown('fire1'));
+    
 		// Draw a circle
 		circ.draw(context);
-
 
 
 		
