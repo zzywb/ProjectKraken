@@ -1,93 +1,97 @@
 'use strict';
 
-window.requestAnimFrame = (function(){
-    return  window.requestAnimationFrame || 
-    window.webkitRequestAnimationFrame   || 
-    window.mozRequestAnimationFrame      || 
-    window.oRequestAnimationFrame        || 
-    window.msRequestAnimationFrame       || 
-    function(callback, element){
-        window.setTimeout(function(){
-           
-            callback(+performance.now());
+/**
+ * I don't know what this does yet.
+ * @since 1.0.0-alpha
+ */
+window.requestAnimFrame = (function () {
+	return window.requestAnimationFrame ||
+		window.webkitRequestAnimationFrame ||
+		window.mozRequestAnimationFrame ||
+		window.oRequestAnimationFrame ||
+		window.msRequestAnimationFrame ||
+		function (callback, element) {
+			window.setTimeout(function () {
 
-        }, 1000 / 60);
-    };
+				callback(+performance.now());
+
+			}, 1000 / 60);
+		};
 })();
 
-var lastRun;
-(function(window, document) {
+(function (window, document) {
 
-    /**
-     * Variables
-     */
-    var delta;
-    
-    var fps = 0;
-    var fpsUpdateInterval = 1000;
-    var fpsTimer;
-    var frames = 0;
+	/**
+	 * Variables
+	 *
+	 * @since 1.0.0-alpha
+	 */
+	var delta = 0;
+	var lastRun = 0;
 
-    var canvas       = document.getElementById('canvas');
-    var width        = canvas.width;
-    var height       = canvas.height;
-    var game_running = true;
-    var show_fps     = true;
+	var fps = 0;
+	var fpsUpdateInterval = 1000;
+	var fpsTimer = 0;
+	var frames = 0;
 
-    /**
-     * Determine if the canvas is supported, get the context and warn the user 
-     * otherwise.
-     */
-    if(canvas.getContext) {
+	var canvas = document.getElementById('canvas');
+	var width = canvas.width;
+	var height = canvas.height;
+	var game_running = true;
+	var show_fps = true;
+	var context = null;
 
-        var ctx = canvas.getContext('2d');
+	/**
+	 * Determine if the canvas is supported, get the context and warn the user 
+	 * otherwise.
+	 */
+	if (canvas.getContext) {
+		context = canvas.getContext('2d');
+	} else {
+		// TODO: Design error message
+		alert('Your browser does not support the html5 canvas!');
+	}
 
-    }
-    else {
+	function showFPS() {
 
-        // TODO: Design error message
-        alert('Your browser does not support the html5 canvas!');
+		context.fillStyle = 'Black';
+		context.font = 'normal 16pt Arial';
+		context.fillText('FPS: ' + fps.toFixed(2), 10, 26);
 
-    }
-    
-    function showFPS() {
+	}
 
-        ctx.fillStyle = 'Black';
-        ctx.font = 'normal 16pt Arial';
-        ctx.fillText('FPS: ' + fps.toFixed(2), 10, 26);
+	function FPS(delta) {
 
-    }
+		fpsTimer += delta;
+		frames++;
 
-    function FPS(delta) {
+		if (fpsTimer > fpsUpdateInterval) {
+			fps = frames;
+			frames = 0;
+			fpsTimer -= fpsUpdateInterval;
+		}
 
-        fpsTimer += delta;
-        frames++;
-        if(fpsTimer > fpsUpdateInterval) {
-            fps = frames / fpsTimer;
-            fpsTimer -= fpsUpdateInterval;
-        }
+	}
 
-    }
+	(function gameLoop() {
 
-    (function gameLoop(){
-        
-        // Compute the time it took to render the last frame
-        delta = (performance.now() - lastRun);
-        
-        FPS(delta);
+		// Compute the time it took to render the last frame
+		delta = (performance.now() - lastRun);
 
-        // Clear screen
-        ctx.clearRect(0, 0, width, height);
+		FPS(delta);
 
-        if(show_fps) showFPS();
+		// Clear screen
+		context.clearRect(0, 0, width, height);
 
-        if(game_running) requestAnimFrame(gameLoop);
+		if (show_fps) showFPS();
 
-        ctx.fillStyle = 'green';
-        ctx.fillRect(10, 10, 50, 50);
+		if (game_running) requestAnimFrame(gameLoop);
 
-        lastRun = performance.now();
+		context.fillStyle = 'green';
+		context.fillRect(10, 10, 50, 50);
 
-    })();
+		lastRun = performance.now();
+
+	})();
 
 })(this, this.document);
