@@ -4,9 +4,20 @@ var circ = new Circle({
     y: height / 2 - 15
   },
   radius: 30,
-  fillColor: 'red',
+  fillColor: 'blue',
   strokeWidth: 5,
-  strokeColor: 'green',
+  strokeColor: 'teal',
+});
+
+var circ2 = new Circle({
+  position: {
+    x: width / 2 - 15,
+    y: height / 2 - 15
+  },
+  radius: 20,
+  fillColor: 'midnightblue',
+  strokeWidth: 2,
+  strokeColor: 'orange',
 });
 
 var speed = new Vector2(5, 5);
@@ -55,8 +66,9 @@ var sum = 0;
     circ.position.y += currentSpeed.y;
 
     
-
+    // Breathing effect
     circ.strokeWidth = 2 + Math.abs(10 * Math.sin(sum += delta / 1000));
+    circ2.strokeWidth = 3 + Math.abs(4 * Math.sin(2*(sum += delta / 1000)));
 
   }
 
@@ -67,6 +79,7 @@ var sum = 0;
 
     // Draw a circle if fire1 pressed
     circ.draw(context);
+    circ2.draw(context);
 
     // Show FPS
     FPSCounter.draw(context);
