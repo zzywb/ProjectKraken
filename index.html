@@ -13,20 +13,35 @@
         <canvas id="canvas"class="main-window" width="640" height="360"></canvas>
       
         <!--
-            #######################################
-            ########## Importing Scripts ##########
-            #######################################
+            ##############################################
+            ########## Importing Engine Scripts ##########
+            ##############################################
         -->
       
-        <!-- Importing Input -->
-        <script src="js/input.js"></script>
+        <!-- Importing Configuration -->
+        <script src="js/engine/config.js"></script>
+        <script src="js/engine/input.js"></script>
 
         <!-- Importing Shapes -->
-        <script src="js/shapes/shape.rectangle.js"></script>
-        <script src="js/shapes/shape.circle.js"></script>
+        <script src="js/engine/shapes/shape.rectangle.js"></script>
+        <script src="js/engine/shapes/shape.circle.js"></script>
 
-        <!-- Importing Main entry point -->
-        <script src="js/main.js"></script>
+
+
+        <!--
+            ##############################################
+            ################## Game Loop #################
+            ##############################################
+        -->
+        <script src="js/game/draw.js"></script>
+
+        <!--
+            ##############################################
+            ############## Main Entry Point ##############
+            ##############################################
+        -->
+        <script src="js/engine/core.js"></script>
+
         
     </body>
 </html>

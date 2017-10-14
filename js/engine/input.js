@@ -1,7 +1,8 @@
-var keyMap = {
-	fire1: 'Enter'
-};
-
+/**
+ * Input master
+ * 
+ * @since v1.0.0
+ */
 var currentKeyDown = null;
 
 document.addEventListener('keydown', function(e) {
