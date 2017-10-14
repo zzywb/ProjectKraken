@@ -3,23 +3,24 @@
  * 
  * @since v1.0.0
  */
-var currentKeyDown = null;
+var currentKeysDown = [];
 
 document.addEventListener('keydown', function (e) {
-	currentKeyDown = e.key;
+	currentKeysDown.push(e.key);
 }, true);
 
 document.addEventListener('keyup', function (e) {
-	if (currentKeyDown == e.key)
-		currentKeyDown = null;
+	if(currentKeysDown.includes(e.key)) {
+		currentKeysDown.splice(currentKeysDown.indexOf(e.key),1);
+	}
 }, true);
 
 var Input = new(function () {
 
 	this.getKeyDown = function (key) {
 
-		for (var i = 0; i < keyMap[key].length; i++) {
-			if (keyMap[key][i] == currentKeyDown)
+		for (var i = 0; i < currentKeysDown.length; i++) {
+			if(keyMap[key].includes(currentKeysDown[i]))
 				return true;
 		}
 
