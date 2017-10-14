@@ -22,7 +22,8 @@ var circ = new Circle({
   strokeColor: 'green',
 });
 
-var speed = 5;
+var speed = new Vector2(5, 5);
+var currentSpeed = new Vector2(0, 0);
 var sum = 0;
 
 (function (window, document) {
@@ -31,22 +32,42 @@ var sum = 0;
 
     FPSCounter.update(delta);
 
+    currentSpeed.x = 0;
+    currentSpeed.y = 0;
+
     if (Input.getKeyDown('up')) {
-      circ.position.y -= speed;
+      currentSpeed.y = -speed.y;
     }
-    if (Input.getKeyDown('down')) {
-      circ.position.y += speed;
+    else if (Input.getKeyDown('down')) {
+      currentSpeed.y = speed.y;
     }
-    if (Input.getKeyDown('left')) {
-      circ.position.x -= speed;
-    }
-    if (Input.getKeyDown('right')) {
-      circ.position.x += speed;
+    else {
+      currentSpeed.y = 0;
     }
 
-    // var mag = Math.hypot(circ.position.x, circ.position.y);
-    // x /= mag;
-    // y /= mag;
+    if (Input.getKeyDown('left')) {
+      currentSpeed.x = -speed.x;
+    }
+    else if (Input.getKeyDown('right')) {
+      currentSpeed.x = speed.x;
+    }
+    else {
+      currentSpeed.x = 0;
+    }
+
+
+    var mag = Math.hypot(currentSpeed.x, currentSpeed.y);
+    if(currentSpeed.x) {
+      currentSpeed.x = currentSpeed.x / mag * speed.x;
+    }
+    if(currentSpeed.y) {
+      currentSpeed.y = currentSpeed.y / mag * speed.y;
+    }
+
+    circ.position.x += currentSpeed.x;
+    circ.position.y += currentSpeed.y;
+
+    
 
     circ.strokeWidth = 2 + Math.abs(10 * Math.sin(sum += delta / 1000));
 
