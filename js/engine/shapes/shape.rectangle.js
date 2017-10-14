@@ -16,11 +16,11 @@ function Rectangle(args) {
   this.strokeColor = args.strokeColor;
   this.strokeCorners = args.strokeCorners;
 
-  this.draw = function(context) {
+  this.draw = function (context) {
 
     // Draw stroke
     context.strokeStyle = this.strokeColor;
-    context.lineWidth = this.strokeWidth*2;
+    context.lineWidth = this.strokeWidth * 2;
     context.lineJoin = this.strokeCorners;
     context.strokeRect(
       this.position.x + this.strokeWidth,
@@ -32,8 +32,8 @@ function Rectangle(args) {
     // Draw fill
     context.fillStyle = this.fillColor;
     context.fillRect(
-      this.position.x + this.strokeWidth,
-      this.position.y + this.strokeWidth,
+      this.position.x,
+      this.position.y,
       this.width,
       this.height
     );

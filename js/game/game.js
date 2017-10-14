@@ -13,8 +13,8 @@ var rect = new Rectangle({
 
 var circ = new Circle({
   position: {
-    x: width/2 - 15,
-    y: height/2 -15
+    x: width / 2 - 15,
+    y: height / 2 - 15
   },
   radius: 30,
   fillColor: 'red',
@@ -22,10 +22,30 @@ var circ = new Circle({
   strokeColor: 'green',
 });
 
-(function(window, document) {
+
+var sum = 0;
+
+(function (window, document) {
 
   function update(delta) {
+
     fpsCounter.update(delta);
+
+    if (Input.getKeyDown('up')) {
+      circ.position.y -= 5;
+    }
+    if (Input.getKeyDown('down')) {
+      circ.position.y += 5;
+    }
+    if (Input.getKeyDown('left')) {
+      circ.position.x -= 5;
+    }
+    if (Input.getKeyDown('right')) {
+      circ.position.x += 5;
+    }
+
+    circ.strokeWidth = 2 + Math.abs(10 * Math.sin(sum += delta / 1000));
+
   }
 
   function draw() {
@@ -33,35 +53,27 @@ var circ = new Circle({
     // Clear screen
     context.clearRect(0, 0, width, height);
 
-    // Draw a rectangle
-    rect.draw(context);
-
-
     // Draw a circle if fire1 pressed
-    if(Input.getKeyDown('fire1')) {
-      circ.position.y += 10;
-    }
     circ.draw(context);
 
     // Show FPS
     fpsCounter.draw(context);
-    
+
   }
-  
+
   function loop(gameTime) {
-    
+
     delta = gameTime - lastRun;
-    
+
     update(delta);
-    
+
     draw();
-    
-    
-    if (game_running)    
-    window.requestAnimationFrame(loop);
-    
+
+    if (game_running)
+      window.requestAnimationFrame(loop);
+
     lastRun = gameTime;
-    
+
   }
 
   window.requestAnimationFrame(loop);

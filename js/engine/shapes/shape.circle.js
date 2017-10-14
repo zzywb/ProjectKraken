@@ -14,13 +14,13 @@ function Circle(args) {
   this.strokeWidth = args.strokeWidth;
   this.strokeColor = args.strokeColor;
 
-  this.draw = function(context) {
+  this.draw = function (context) {
 
     // Draw path
     context.beginPath();
     context.arc(
-      this.position.x + this.radius + this.strokeWidth/2,
-      this.position.y + this.radius + this.strokeWidth/2,
+      this.position.x + this.radius,
+      this.position.y + this.radius,
       this.radius,
       0,
       2 * Math.PI
