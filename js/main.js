@@ -22,9 +22,9 @@ window.requestAnimFrame = (function () {
 (function (window, document) {
 
 	/**
-	 * Variables
+	 * Configuration
 	 *
-	 * @since 1.0.0-alpha
+	 * @since 1.0.0
 	 */
 	var delta = 0;
 	var lastRun = 0;
@@ -95,6 +95,7 @@ window.requestAnimFrame = (function () {
 		// Draw a rectangle
 		rect.draw(context);
 
+		console.log(Input.getKeyDown('fire1'));
 
 
 		

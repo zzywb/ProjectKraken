@@ -1,43 +1,25 @@
-/**
- * Input handler
- * @since 1.0.0
- */
-function Input() {
+var keyMap = {
+	fire1: 'Enter'
+};
 
-		return this;
+var currentKeyDown = null;
 
-}   
+var Input = new (function(keyMap) {
 
-/**
- * Assign key mapping to the input handler and create events to
- * determine if the keys are pressed or released
- * keyMap = keyCode:keyName
- * @param {*dictionary} keys 
- */
-Input.prototype.mapKeys = function(keys) {
-	Input.keyMap = {};
-	Input.keyMap = keys;
-	
-	/**
-	 * Reset the state of the buttons
-	 */
-	keyMap.forEach(function(key) {
-		keyMap[key].pressed = false;
-		keyMap[key].released = false;
-	})
-	
-	document.addEventListener('keypress', function (event) {
-		keyMap[event.keycode].pressed = true;
-	}, true)
-	
-	document.addEventListener('keyup', function (event) {
-		keyMap[event.keycode].released = true;
-	}, true)
-}
+	this.getKeyDown = function(key) {
+		
+		document.addEventListener('keydown', function(e) {
+			currentKeyDown = e.key;
+		}, true);
+		
+		var temp = currentKeyDown;
+		currentKeyDown = null;
 
-Input.prototype.getKeyPress = function(key) {
+		if(keyMap[key] == temp)
+			return true;
+		
+		return false;
+	}
 
-	console.log(Input.keyMap);
-	return Input.keyMap.key.pressed;
-	
-}
+	return this;
+})(keyMap);
