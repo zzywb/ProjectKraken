@@ -2,7 +2,7 @@
 
 /**
  * I don't know what this does yet.
- * @since 1.0.0-alpha
+ * @since 1.0.0
  */
 window.requestAnimFrame = (function () {
 	return window.requestAnimationFrame ||
@@ -24,7 +24,7 @@ window.requestAnimFrame = (function () {
 	/**
 	 * Variables
 	 *
-	 * @since 1.0.0-alpha
+	 * @since 1.0.0
 	 */
 	var delta = 0;
 	var lastRun = 0;
@@ -73,9 +73,29 @@ window.requestAnimFrame = (function () {
 
 	}
 	
+	var rect = new Rectangle({
+		position: {
+			x: 0,
+			y: 0
+		},
+		width: 100,
+		height: 100,
+		fillColor: 'pink',
+		strokeWidth: 10,
+		strokeColor: 'white',
+		strokeCorners: 'round'
+	});
 
-	// Creating a rectangle
-	var rect = rectangle(width/2 - 50, height/2 - 50, 100, 100, 'blue');
+	var circ = new Circle({
+		position: {
+			x: 0,
+			y: 0
+		},
+		radius: 30,
+		fillColor: 'red',
+		strokeWidth: 5,
+		strokeColor: 'green',
+	});
 
 	(function gameLoop() {
 
@@ -94,6 +114,9 @@ window.requestAnimFrame = (function () {
 
 		// Draw a rectangle
 		rect.draw(context);
+
+		// Draw a circle
+		circ.draw(context);
 
 
 
