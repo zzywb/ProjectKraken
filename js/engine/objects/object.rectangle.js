@@ -1,14 +1,11 @@
 /**
- * Rectangle Shape
+ * Rectangle Object
  * 
- * @param {*obj} args 
  * @since v1.0.0
  */
 function Rectangle(args) {
-  this.position = {
-    x: args.position.x,
-    y: args.position.y
-  };
+  GameObject.call(this, args);
+
   this.width = args.width;
   this.height = args.height;
   this.fillColor = args.fillColor;
@@ -16,7 +13,7 @@ function Rectangle(args) {
   this.strokeColor = args.strokeColor;
   this.strokeCorners = args.strokeCorners;
 
-  this.draw = function (context) {
+  this.draw = function () {
 
     // Draw stroke
     context.strokeStyle = this.strokeColor;

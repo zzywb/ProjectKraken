@@ -1,20 +1,17 @@
 /**
- * Circle Shape
+ * Circle Object
  * 
- * @param {*obj} args 
  * @since v1.0.0
  */
 function Circle(args) {
-  this.position = {
-    x: args.position.x,
-    y: args.position.y
-  };
+  GameObject.call(this, args);
+
   this.radius = args.radius;
   this.fillColor = args.fillColor;
   this.strokeWidth = args.strokeWidth;
   this.strokeColor = args.strokeColor;
 
-  this.draw = function (context) {
+  this.draw = function () {
 
     // Draw path
     context.beginPath();

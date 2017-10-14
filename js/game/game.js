@@ -1,16 +1,3 @@
-var rect = new Rectangle({
-  position: {
-    x: 0,
-    y: 0
-  },
-  width: 100,
-  height: 100,
-  fillColor: 'pink',
-  strokeWidth: 10,
-  strokeColor: 'white',
-  strokeCorners: 'round'
-});
-
 var circ = new Circle({
   position: {
     x: width / 2 - 15,
