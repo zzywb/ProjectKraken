@@ -14,7 +14,7 @@ document.addEventListener('keyup', function(e) {
 		currentKeyDown = null;
 }, true);
 
-var Input = new (function(keyMap) {
+var Input = new (function() {
 
 	this.getKeyDown = function(key) {
 
@@ -25,4 +25,5 @@ var Input = new (function(keyMap) {
 	}
 
 	return this;
-})(keyMap);
+})();
+
