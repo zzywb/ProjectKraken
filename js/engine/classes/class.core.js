@@ -2,10 +2,8 @@ class Core {
   constructor(width, height) {
     this.delta = 0;
     this.lastRun = 0;
-    this.canvas = document.getElementById('canvas');
+    this.canvas = this.createHiDPICanvas(width, height);
     this.context = canvas.getContext('2d');
-    this.canvas.width = width;
-    this.canvas.height = height;
     this.game = new Game(this.canvas.width, this.canvas.height);
     this.gameTime = 0;
 
@@ -36,5 +34,28 @@ class Core {
       window.requestAnimationFrame(this.loop.bind(this));
 
     this.lastRun = gameTime;
+  }
+
+  pixelRatio() {
+    var context = document.createElement("canvas").getContext("2d")
+    var dpr = devicePixelRatio || 1;
+    var bsr = context.webkitBackingStorePixelRatio ||
+              context.mozBackingStorePixelRatio ||
+              context.msBackingStorePixelRatio ||
+              context.oBackingStorePixelRatio ||
+              context.backingStorePixelRatio || 1;
+    return dpr/bsr;
+  }
+
+  createHiDPICanvas(w, h, ratio) {
+    if(!ratio)
+      ratio = this.pixelRatio();
+    var can = document.getElementById('canvas');
+        can.width = w * ratio;
+        can.height = h * ratio;
+        can.style.width = w + "px";
+        can.style.height = h + "px";
+        can.getContext('2d').setTransform(ratio, 0, 0, ratio, 0, 0);
+    return can;
   }
 }

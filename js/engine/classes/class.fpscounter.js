@@ -5,7 +5,7 @@ class FPSCounter extends GameObject {
     this.fps = 0;
     this.fpsTimer = 0;
     this.frames = 0;
-    this.fpsUpdateInterval = 1000;
+    this.fpsUpdateInterval = 500;
   }
 
   draw(context) {

@@ -6,4 +6,4 @@
 
 
 let fpsCounter = new FPSCounter(0, 0);
-let core = new Core(1280, 720);
+let core = new Core(600, 400);
