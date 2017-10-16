@@ -1,7 +1,7 @@
 class Text extends GameObject {
-  constructor(x, y, text, size, font, color) {
+  constructor(x, y, string, size, font, color) {
     super(x, y);
-    this.text = text;
+    this.string  = string;
     this.size = size;
     this.font = font;
     this.color = color;
@@ -12,8 +12,9 @@ class Text extends GameObject {
     context.font = 'normal ' + this.size + ' ' + this.font;
 
     // Draw fill
+    context.textBaseline = 'top';
     context.fillStyle = this.color;
-    context.fillText(this.text, this.x, this.y);
+    context.fillText(this.string, this.x, this.y);
     context.fill();
   }
 }
