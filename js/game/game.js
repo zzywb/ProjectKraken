@@ -1,74 +1,10 @@
-var circ = new Circle({
-  position: {
-    x: width / 2 - 15,
-    y: height / 2 - 15
-  },
-  radius: 30,
-  fillColor: 'blue',
-  strokeWidth: 5,
-  strokeColor: 'teal',
-});
-
-var circ2 = new Circle({
-  position: {
-    x: width / 2 - 15,
-    y: height / 2 - 15
-  },
-  radius: 20,
-  fillColor: 'midnightblue',
-  strokeWidth: 2,
-  strokeColor: 'orange',
-});
-
-var speed = new Vector2(5, 5);
-var currentSpeed = new Vector2(0, 0);
-var sum = 0;
+var circ = new Circle(2, 3, 5);
 
 (function (window, document) {
 
   function update(delta) {
 
     FPSCounter.update(delta);
-
-    currentSpeed.x = 0;
-    currentSpeed.y = 0;
-
-    if (Input.getKeyDown('up')) {
-      currentSpeed.y = -speed.y;
-    }
-    else if (Input.getKeyDown('down')) {
-      currentSpeed.y = speed.y;
-    }
-    else {
-      currentSpeed.y = 0;
-    }
-
-    if (Input.getKeyDown('left')) {
-      currentSpeed.x = -speed.x;
-    }
-    else if (Input.getKeyDown('right')) {
-      currentSpeed.x = speed.x;
-    }
-    else {
-      currentSpeed.x = 0;
-    }
-
-
-    var mag = Math.hypot(currentSpeed.x, currentSpeed.y);
-    if(currentSpeed.x) {
-      currentSpeed.x = currentSpeed.x / mag * speed.x;
-    }
-    if(currentSpeed.y) {
-      currentSpeed.y = currentSpeed.y / mag * speed.y;
-    }
-
-    circ.position.x += currentSpeed.x;
-    circ.position.y += currentSpeed.y;
-
-    
-    // Breathing effect
-    circ.strokeWidth = 2 + Math.abs(10 * Math.sin(sum += delta / 1000));
-    circ2.strokeWidth = 3 + Math.abs(4 * Math.sin(2*(sum += delta / 1000)));
 
   }
 
@@ -79,7 +15,6 @@ var sum = 0;
 
     // Draw a circle if fire1 pressed
     circ.draw(context);
-    circ2.draw(context);
 
     // Show FPS
     FPSCounter.draw(context);
