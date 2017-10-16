@@ -1,7 +1,8 @@
-class Circle extends GameObject {
-  constructor(x, y, r, fillColor, strokeWidth, strokeColor) {
+class Rectangle extends GameObject {
+  constructor(x, y, w, h, fillColor, strokeWidth, strokeColor) {
     super(x, y);
-    this.r = r;
+    this.w = w;
+    this.h = h;
     this.fillColor = fillColor;
     this.strokeWidth = strokeWidth;
     this.strokeColor = strokeColor;
@@ -10,13 +11,11 @@ class Circle extends GameObject {
   draw(context) {
     // Draw path
     context.beginPath();
-    context.arc(
-      this.x + this.r + this.strokeWidth/2,
-      this.y + this.r + this.strokeWidth/2,
-      this.r,
-      0,
-      2 * Math.PI,
-      false
+    context.rect(
+      this.x + this.strokeWidth/2,
+      this.y + this.strokeWidth/2,
+      this.w,
+      this.h
     );
     context.closePath();
 
@@ -24,7 +23,7 @@ class Circle extends GameObject {
     context.fillStyle = this.fillColor;
     context.fill();
 
-    // Drae stroke
+    // Draw stroke
     context.lineWidth = this.strokeWidth;
     context.strokeStyle = this.strokeColor;
     context.stroke();
