@@ -1,6 +1,7 @@
-class FPSCounter extends GameObject {
+class FPSCounter {
   constructor(x, y) {
-    super(x, y);
+    this.x = x;
+    this.y = y;
     this.text = new Text(this.x, this.y, 'FPS: NaN', '50px', 'Arial', 'white');
     this.fps = 0;
     this.fpsTimer = 0;
